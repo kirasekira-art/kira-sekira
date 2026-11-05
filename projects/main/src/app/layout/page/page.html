@@ -7,12 +7,6 @@
           @if (contacts().phone) {
             <a [href]="'tel:' + contacts().phone">{{ contacts().phone }}</a>
           }
-          @if (contacts().telegram) {
-            <a [href]="contacts().telegram" target="_blank">Telegram</a>
-          }
-          @if (contacts().whatsapp) {
-            <a [href]="contacts().whatsapp" target="_blank">WhatsApp</a>
-          }
         </div>
       </div>
     </div>

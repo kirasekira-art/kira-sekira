@@ -28,6 +28,19 @@ export class Project {
         this.studio
           .getGalleryBySlug(slug)
           .then((data: any) => {
+            // Omit the two photos removed from this public album by the photographer.
+            if (data && slug === 'korporativ-beaver-group-2024') {
+              const excludedImageIds = new Set([
+                'c54762d0-79a5-4ad1-a08d-b79cbf81e88d', // DSC_2702.webp
+                '0eacfb73-fa3d-4524-9866-6c58aad90dc1', // DSC_2293.webp
+              ]);
+              data = {
+                ...data,
+                images: (data.images || []).filter(
+                  (image: any) => !excludedImageIds.has(image.image?.id),
+                ),
+              };
+            }
             this.gallery.set(data);
             this.setSeo(
               data?.title ? `${data.title} — Kira Sekira` : 'Kira Sekira',
