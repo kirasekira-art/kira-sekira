@@ -1,6 +1,24 @@
 :80 {
     root * /srv
     encode gzip
-    file_server
-    try_files {path} {path}/index.html /index.html
+    handle /api/inquiry {
+        header Content-Type application/json
+        respond "{\"configured\":false}" 200
+    }
+    handle /images/portrait.webp {
+        rewrite * /assets/kira-sekira-corporate-portrait.webp
+        file_server
+    }
+    @landing path /
+    handle @landing {
+        rewrite * /events-landing/index.html
+        file_server
+    }
+    handle /events-landing/* {
+        file_server
+    }
+    handle {
+        try_files {path} {path}/index.html /index.html
+        file_server
+    }
 }
