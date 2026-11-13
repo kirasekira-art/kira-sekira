@@ -1,0 +1,10 @@
+.hero-copy { container-type: inline-size; }
+.hero .hero-copy h1 { font-size: min(93px, 14.5cqw); }
+.hero .hero-copy .hero-offer { font-size: 30px; }
+@media (min-width: 1024px) {
+  .hero { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+}
+@media (max-width: 760px) {
+  .hero .hero-copy h1 { font-size: min(13.5vw, 14.5cqw); max-width: none; }
+  .hero .hero-copy .hero-offer { font-size: clamp(21px, 5.8vw, 25.5px); }
+}
